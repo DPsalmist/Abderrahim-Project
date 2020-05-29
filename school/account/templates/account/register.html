@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Registration {% endblock title %}	
+
+{% block navheader %} 
+	<!-- As a heading -->
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">School Project</span>
+</nav>
+{% endblock navheader %}
+
+{% block content %}
+
+<h1>Create an account</h1>
+<hr>
+<p>Please, sign up using the following form:</p>
+	<form action="." method="post">
+		{{ user_form|crispy }}
+		{% csrf_token %}
+		<p><input type="submit" value="Create my account" class="btn btn-outline-secondary" name=""></p>
+	</form>
+	<div class="hidden">
+		<small>Have an Account ? <a href="{% url 'login' %}">Log in here</a></small>
+	</div>
+<!-- 	<p><a href="{% url 'password_reset' %}">Need an account?</a></p> -->
+</div>
+{% endblock content %}
+	

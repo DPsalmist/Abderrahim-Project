@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Log-in {% endblock title %}	
+
+
+{% block navheader %} 
+	<!-- As a heading -->
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">School Project</span>
+<!--   <a href="#" style="color: #333">Admin</a> -->
+</nav>
+{% endblock navheader %}
+
+
+{% block content %}
+<h1>Log-in</h1>
+<hr>
+{% if forms.errors %}
+	<p>Your username and password didn't match. Please try again.</p>
+{% else %}
+	<p>Please, use the following form to log in. If you don't have an account 
+	<a href="{% url 'register' %}">register here</a></p>
+{% endif %}
+
+		<form action="." method="post">
+			{{ form|crispy }}
+			{% csrf_token %}
+			<input type="hidden" value="{{ next }}" name="next">
+			<small><a href="{% url 'password_reset' %}">Forgotten your password?</a></small>
+			<p><input type="submit" value="Log-in" class="btn btn-outline-secondary" name=""></p>
+		</form>
+		<div class="hidden">
+			<small>Need an Account ? <a href="{% url 'register' %}">Register here</a></small>
+		</div>
+		
+	
+
+{% endblock content %}
+
+	

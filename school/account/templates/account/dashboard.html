@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Dashboard {% endblock title %}	
+
+{% block navheader %} 
+	<!-- Heading -->
+{% if request.user.is_authenticated %}
+	<nav class="navbar navbar-light bg-light">
+  	<span class="navbar-brand mb-0 h1">Dashboard</span>
+  	<a href="{% url 'logout' %}" class="btn btn-outline-secondary">Logout</a>
+{% else %}
+	<a href="{% url 'login' %}">Log-in</a>
+{% endif %}
+</nav>
+{% endblock navheader %}
+
+<!-- Dashboard -->
+{% if request.user.is_authenticated %}
+{% block sidebar %}
+	<div class="bg-light" style="text-align:center;">
+		<div>
+			<b>Welcome {{ request.user.username }}</b><hr>
+			<img src="{{ user.profile.photo.url }}" style="border-radius: 50%; height:150px; width:150px;"><hr> <br>
+		</div>
+		<ul style="list-style: none; ">
+			<li><a class="btn btn-outline-dark" href="{% url 'dashboard' %}">Dashboard</a></li><hr>
+			<li><a class="btn btn-outline-dark" href="{% url 'edit' %}">View Profile</a></li><hr>
+			<li><a class="btn btn-outline-dark" href="{% url 'password_change' %}">Change Password</a></li><hr>
+		</ul>
+	</div>
+{% endblock sidebar %}
+{% else %}
+{% endif %}
+
+<!-- Content -->
+{% block content %}
+	<hr>
+	<p>Welcome to your dashboard. You can add your information and submit.</p>
+	<p>Click on the buttons by your left to get started. </p>
+	<p> More info soon...</p>
+{% endblock content %}
